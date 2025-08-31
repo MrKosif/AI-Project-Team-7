@@ -1,0 +1,68 @@
+# Core settings: normalize text files and enforce LF line endings by default
+* text=auto eol=lf
+
+# Scripts and source code (explicit)
+*.sh      text eol=lf
+*.py      text eol=lf
+*.rb      text eol=lf
+*.pl      text eol=lf
+*.js      text eol=lf
+*.jsx     text eol=lf
+*.ts      text eol=lf
+*.tsx     text eol=lf
+*.java    text eol=lf
+*.c       text eol=lf
+*.cpp     text eol=lf
+*.h       text eol=lf
+*.cs      text eol=lf
+*.go      text eol=lf
+*.php     text eol=lf
+
+# Mark common text formats
+*.html    text eol=lf
+*.css     text eol=lf
+*.scss    text eol=lf
+*.md      text eol=lf
+*.txt     text eol=lf
+*.json    text eol=lf
+*.yaml    text eol=lf
+*.yml     text eol=lf
+*.xml     text eol=lf
+
+# Windows-specific scripts: use CRLF
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+*.ps1     text eol=crlf
+
+# Binary files: ensure they're treated as binary
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.bmp     binary
+*.tif     binary
+*.svg     binary
+*.pdf     binary
+*.zip     binary
+*.tar     binary
+*.gz      binary
+*.7z      binary
+*.exe     binary
+*.dll     binary
+*.so      binary
+*.class   binary
+*.jar     binary
+
+# Documentation and generated files
+/docs/** text eol=lf
+/build/** binary
+/dist/** binary
+/*.lock  -text
+
+# Prevent diff for large or binary-like files
+*.min.js -diff
+*.min.css -diff
+
+# Ensure .gitattributes itself is stored with LF
+.gitattributes text eol=lf
