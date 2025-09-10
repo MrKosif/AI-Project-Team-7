@@ -1,0 +1,32 @@
+[6161] Using existing client port: 21171
+[6161] [6161] Connecting to remote server: https://mcp.turkishtechlab.com/mcp
+[6161] Using transport strategy: http-first
+[6161] Connected to remote server using StreamableHTTPClientTransport
+[6161] Local STDIO server running
+[6161] Proxy established successfully between local STDIO and remote StreamableHTTPClientTransport
+[6161] Press Ctrl+C to exit
+[6161] [Local→Remote] initialize
+[6161] {
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {},
+    "clientInfo": {
+      "name": "mcp (via mcp-remote 0.1.18)",
+      "version": "0.1.0"
+    }
+  }
+}
+[6161] [Remote→Local] 0
+[6161] [Local→Remote] notifications/initialized
+[6161] [Local→Remote] tools/list
+[6161] [Remote→Local] 1
+[6161] 
+Shutting down...
+npm notice
+npm notice New minor version of npm available! 11.4.2 -> 11.5.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.2
+npm notice To update run: npm install -g npm@11.5.2
+npm notice
