@@ -13,6 +13,7 @@ class GraphState(TypedDict):
   available_tools: list[dict[str, any]]
   input_status: Optional[str]
   answer_status: Optional[str]
+  routed_agent: Optional[str]
 
 
   

@@ -6,7 +6,6 @@ from src.agents.tool_selecting_agent import ToolSelectingAgent
 from src.agents.tool_executing_agent import ToolExecutingAgent
 from src.agents.input_parameter_agent import InputParameterAgent
 from src.agents.output_generation_agent import OutputGenerationAgent
-from src.agents.generation_router_agent import GenerationRouterAgent
 
 from loguru import logger
 
@@ -23,14 +22,12 @@ class WorkflowEngine:
         #self.tool_executing_agent = ToolExecutingAgent(llm_interface)
         #self.input_parameter_agent = InputParameterAgent(llm_interface)
         #self.output_generation_agent = OutputGenerationAgent(llm_interface)
-        #self.generation_router_agent = GenerationRouterAgent(llm_interface)
 
         self.orchestrator_agent = OrchestratorAgent()
         self.tool_selecting_agent = ToolSelectingAgent()
         self.tool_executing_agent = ToolExecutingAgent()
         self.input_parameter_agent = InputParameterAgent()
         self.output_generation_agent = OutputGenerationAgent()
-        self.generation_router_agent = GenerationRouterAgent()
 
         # Build workflow graph
         self.graph = self._build_graph()
@@ -52,34 +49,25 @@ class WorkflowEngine:
         # Add conditional edges from router
 
         workflow.add_conditional_edges(
-            "generation_router_agent",
-            self.generation_router_agent.route,
-            {
-                "route_generation_router_agent": "generation_router_agent", 
-                "route_orchestrator": "orchestrator",
-                "error": END
-            }
-        )
-
-        workflow.add_conditional_edges(
             "orchestrator",
             self.orchestrator_agent.route,
             {
                 "route_tool_selecting_agent": "tool_selecting_agent", 
                 "route_tool_executing_agent": "tool_executing_agent",
                 "route_input_parameter_agent": "input_parameter_agent",
+                "route_output_generation_agent": "output_generation_agent",
                 "error": END
             }
         )
         
         # Add terminal edges
         workflow.add_edge("tool_selecting_agent", "orchestrator")
-        workflow.add_edge("tool_executing_agent", "orchestrator")
+        workflow.add_edge("tool_executing_agent", "output_generation_agent")
         workflow.add_edge("input_parameter_agent", "orchestrator")
         workflow.add_edge("output_generation_agent", END)
         
         # Set entry point
-        workflow.set_entry_point("output_generation_agent")
+        workflow.set_entry_point("orchestrator")
         
         return workflow
     
